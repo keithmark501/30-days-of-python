@@ -1,0 +1,34 @@
+import re
+from collections import Counter
+
+def text_analyzer(text):
+    
+    words = re.findall(r'\b\w+\b', text.lower())
+    sentences = re.split(r'[.!?]+', text)
+    
+    
+    num_chars_with_spaces = len(text)
+    num_chars_without_spaces = len(text.replace(" ", ""))
+    num_words = len(words)
+    num_sentences = len([s for s in sentences if s.strip() != ""])
+    
+    
+    word_freq = Counter(words)
+    most_common = word_freq.most_common(5)
+
+    
+    print("Text Analysis:")
+    print(f"Characters (with spaces): {num_chars_with_spaces}")
+    print(f"Characters (without spaces): {num_chars_without_spaces}")
+    print(f"Words: {num_words}")
+    print(f"Sentences: {num_sentences}")
+    print("Most common words:")
+    for word, freq in most_common:
+        print(f"  {word}: {freq}")
+
+sample_text = """
+I love teaching. Teaching is my passion. If you love teaching, you will always learn more. 
+Python makes teaching even more exciting and productive!
+"""
+
+text_analyzer(sample_text)
